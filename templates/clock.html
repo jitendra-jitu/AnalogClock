@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Clock</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.0">
+</head>
+<body>
+    <div class="clock-container">
+       
+
+        <div class="clock" id="analogClock"> <!-- Add an ID for analog clock -->
+            <div class="hand hour" id="hourHand"></div>
+            <div class="hand minute" id="minuteHand"></div>
+            <div class="hand second" id="secondHand"></div>
+            <div class="hand fourth" id="fourthHand"></div> <!-- Fourth hand for additional styling -->
+            <div class="center"></div>
+        </div>
+        
+        <div class="digital-clock" id="digitalClock" style="display: none;">
+            <div class="digital-display">
+                <div class="digital-time" id="digitalTime">{{ current_time }}</div>
+                <div class="digital-date" id="digitalDate">{{ current_date }}</div>
+            </div>
+            <div class="settings-controls">
+                <button class="settings-button" id="settingsButton">⚙️</button>
+                <select id="themeSelect">
+                    <option value="default">Default</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="app-container">
+            <button class="theme-button button light" id="themeButton" aria-label="Toggle dark mode">Light/Dark Mode</button>
+            <button class="switch-button" id="toggleClockButton" aria-label="Switch to digital clock">Switch to Digital Clock</button> <!-- Button to toggle clocks -->
+            <!-- Other content of the app -->
+        </div>
+        
+        
+    </div>
+    
+    <div class="timezone-form">
+        <label for="timezone">Select Timezone:</label>
+        <div class="timezone-select">
+            <select id="timezone" aria-label="Select timezone">
+                <option value="Asia/Kolkata" selected>Asia/Kolkata (IST)</option>
+                <option value="America/New_York">America/New_York (EST)</option>
+                <option value="America/Los_Angeles">America/Los_Angeles (PST)</option>
+                <option value="Europe/London">Europe/London (GMT)</option>
+                <option value="Europe/Paris">Europe/Paris (CET)</option>
+                <option value="Asia/Tokyo">Asia/Tokyo (JST)</option>
+                <option value="Australia/Sydney">Australia/Sydney (AEDT)</option>
+                <option value="Africa/Johannesburg">Africa/Johannesburg (SAST)</option>
+                <option value="Asia/Dubai">Asia/Dubai (GST)</option>
+                <option value="America/Sao_Paulo">America/Sao_Paulo (BRT)</option>
+                <option value="America/Chicago">America/Chicago (CST)</option>
+                <option value="America/Toronto">America/Toronto (EST)</option>
+                <option value="Asia/Singapore">Asia/Singapore (SGT)</option>
+                <option value="Asia/Shanghai">Asia/Shanghai (CST)</option>
+                <option value="Pacific/Auckland">Pacific/Auckland (NZDT)</option>
+                <option value="Europe/Berlin">Europe/Berlin (CET)</option>
+                <option value="America/Mexico_City">America/Mexico_City (CST)</option>
+                <option value="Asia/Hong_Kong">Asia/Hong_Kong (HKT)</option>
+                <option value="Europe/Moscow">Europe/Moscow (MSK)</option>
+                <option value="America/Vancouver">America/Vancouver (PST)</option>
+                <option value="America/Argentina/Buenos_Aires">America/Argentina/Buenos_Aires (ART)</option>
+                <option value="Asia/Seoul">Asia/Seoul (KST)</option>
+                <option value="Europe/Rome">Europe/Rome (CET)</option>
+                <option value="Asia/Bangkok">Asia/Bangkok (ICT)</option>
+                <option value="America/Lima">America/Lima (PET)</option>
+                <option value="Pacific/Honolulu">Pacific/Honolulu (HST)</option>
+                <option value="America/Phoenix">America/Phoenix (MST)</option>
+                <option value="America/Denver">America/Denver (MST)</option>
+                <option value="Europe/Amsterdam">Europe/Amsterdam (CET)</option>
+                <option value="Europe/Brussels">Europe/Brussels (CET)</option>
+                <option value="Europe/Stockholm">Europe/Stockholm (CET)</option>
+                <option value="Asia/Calcutta">Asia/Calcutta (IST)</option>
+                <option value="Asia/Kuala_Lumpur">Asia/Kuala_Lumpur (MYT)</option>
+                <option value="Asia/Taipei">Asia/Taipei (CST)</option>
+                <option value="Pacific/Chatham">Pacific/Chatham (CHAST)</option>
+                <option value="Pacific/Guam">Pacific/Guam (ChST)</option>
+                <option value="Pacific/Midway">Pacific/Midway (SST)</option>
+                <option value="America/Montevideo">America/Montevideo (UYT)</option>
+                <option value="America/Guayaquil">America/Guayaquil (ECT)</option>
+                <option value="Asia/Nicosia">Asia/Nicosia (EET)</option>
+                <option value="Asia/Baku">Asia/Baku (AZT)</option>
+                <option value="Asia/Almaty">Asia/Almaty (ALMT)</option>
+                <option value="America/Asuncion">America/Asuncion (PYT)</option>
+                <option value="America/Caracas">America/Caracas (VET)</option>
+                <option value="Europe/Zurich">Europe/Zurich (CET)</option>
+                <option value="America/Antigua">America/Antigua (AST)</option>
+                <option value="Asia/Dhaka">Asia/Dhaka (BST)</option>
+                <option value="America/Barbados">America/Barbados (AST)</option>
+                <option value="America/Port_of_Spain">America/Port_of_Spain (AST)</option>
+                <option value="America/Cayenne">America/Cayenne (GFT)</option>
+                <option value="America/Costa_Rica">America/Costa_Rica (CST)</option>
+                <option value="America/Belize">America/Belize (CST)</option>
+                <option value="Europe/Helsinki">Europe/Helsinki (EET)</option>
+                <option value="Africa/Nairobi">Africa/Nairobi (EAT)</option>
+                <option value="Asia/Amman">Asia/Amman (EET)</option>
+                <option value="Asia/Tbilisi">Asia/Tbilisi (GET)</option>
+                <option value="Asia/Yerevan">Asia/Yerevan (AMT)</option>
+                <!-- Add more timezones as needed -->
+            </select>
+            <button class="timezone-button" id="changeTimezoneButton" aria-label="Change selected timezone">Change Timezone</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}?v=1.0" defer></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+/* Overall body styling */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0f7fa; /* Light cyan background */
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition for background and text color */
+    padding: 20px; /* Add padding to body */
+}
+
+/* Light Theme */
+body.light-theme {
+    background-color: rgb(179, 201, 209);
+    color: black; /* Adjust text color as needed */
+}
+
+/* Dark theme styles */
+body.dark-theme {
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text */
+}
+
+/* Keyframes for fade-in effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframes for pulsating effect */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* Clock container styling */
+.clock-container {
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease;
+    padding: 20px; /* Add padding to clock container */
+}
+
+/* Clock face styling */
+.clock {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    border: 12px solid #80deea;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #b2ebf2, #e0f7fa);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+    animation: pulse 2.5s infinite;
+    padding: 10px; /* Add padding for clock face */
+}
+
+/* Dark theme clock face */
+body.dark-theme .clock {
+    background: radial-gradient(circle at center, #333, #212121); /* Darker clock face */
+    border-color: #80deea; /* Keep the border color if needed */
+    box-shadow: 0 0 25px white; /* White box-shadow in dark mode */
+}
+
+/* Clock hand styling */
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    transition: transform 0.5s ease;
+    border-radius: 4px;
+}
+
+.hour { width: 8px; height: 64px; background: #01579b; } /* Hour hand */
+.minute { width: 5px; height: 80px; background: #0288d1; } /* Minute hand */
+.second { width: 3px; height: 96px; background: #ff1744; } /* Second hand */
+
+/* Updated fourth hand styling */
+.fourth {
+    width: 6px; /* Wider than other hands */
+    height: 112px; /* 70% */
+    background: #ffeb3b; /* Bright yellow color for visibility */
+}
+
+/* Center circle */
+.center {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #01579b;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Hour marks */
+.hour-mark {
+    position: absolute;
+    width: 6px;
+    height: 20px;
+    background-color: #0277bd;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+.hour-mark:hover {
+    background-color: #01579b; /* Change color on hover */
+}
+
+/* Dark theme hour marks */
+body.dark-theme .hour-mark {
+    background-color: #4fc3f7; /* Light blue for hour marks in dark theme */
+}
+
+/* Button Styling */
+.button, .theme-button, .switch-button {
+    padding: 12px 24px; /* Padding for buttons */
+    color: white; /* White text color */
+    background-color: #81d4fa; /* Initial light blue color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition for background color */
+}
+
+/* Dark theme button styling */
+body.dark-theme .button, body.dark-theme .theme-button, body.dark-theme .switch-button {
+    background-color: #4f83cc; /* Darker blue for buttons */
+}
+
+/* Hover Effect */
+.button:hover, .theme-button:hover, .switch-button:hover {
+    background-color: #0288d1; /* Change background on hover */
+    color: black; /* Change text color to black on hover for contrast */
+}
+
+/* Timezone form styling */
+.timezone-form {
+    margin: 20px 0; /* Space around the timezone section */
+    text-align: center; /* Center-align the content */
+    padding: 10px; /* Add padding to the timezone form */
+}
+
+/* Timezone label styling */
+.timezone-form label {
+    font-size: 1.2em; /* Increase font size for better visibility */
+    color: #01579b; /* Dark blue color for the label */
+    margin-right: 10px; /* Space between label and select */
+}
+
+/* Wrapper for the select and button */
+.timezone-select {
+    display: inline-flex; /* Align select and button in a row */
+    align-items: center; /* Vertically center align */
+    padding: 10px; /* Add padding for better spacing */
+}
+
+/* Timezone select styling */
+#timezone {
+    padding: 10px; /* Padding for better touch area */
+    border: 2px solid #80deea; /* Light blue border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Font size */
+    margin-right: 10px; /* Space between select and button */
+    background-color: #e0f7fa; /* Light background for the select */
+    transition: border-color 0.3s; /* Smooth border color transition */
+}
+
+/* Change border color on focus */
+#timezone:focus {
+    border-color: #0288d1; /* Darker blue on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Button styling for timezone change */
+.timezone-button {
+    padding: 10px 20px; /* Padding for button */
+    background-color: #81d4fa; /* Light blue background */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: none; /* Disable transition effects */
+}
+
+/* Dark theme timezone button */
+body.dark-theme .timezone-button {
+    background-color: #4f83cc; /* Darker blue for timezone button */
+}
+
+/* Remove hover effect for timezone button */
+.timezone-button:hover {
+    background-color: #81d4fa; /* Keep the same background color on hover */
+    color: white; /* Keep the same text color on hover */
+}
+
+/* Positioning for the app container */
+.app-container {
+    position: relative; /* Ensure positioning context for the button */
+    padding: 20px; /* Add padding for app container */
+    display: flex; /* Flex container for alignment */
+    flex-direction: column; /* Arrange children in a column */
+    align-items: flex-end; /* Align children to the right */
+}
+
+/* Digital Clock Styling */
+.digital-clock {
+    background: linear-gradient(135deg, #2c3e50, #4ca1af); /* Gradient background */
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    transition: background 0.3s ease, color 0.3s ease;
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; /* Prevents overflow of children */
+}
+
+.digital-display {
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px); /* Blurs background for depth */
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.digital-time {
+    font-size: 6em;
+    font-family: 'Digital', monospace; /* Custom font for digital feel */
+    color: #ffffff; /* Bright white for time */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+}
+
+.digital-separator {
+    font-size: 6em; /* Larger font for separator */
+    color: #ffffff; /* Bright white for separator */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+}
+
+/* Button Container */
+.settings-controls {
+    display: flex; /* Flex container for buttons */
+    gap: 50px; /* Set gap between buttons to 50px */
+    margin-top: 20px; /* Margin above the button area */
+    position: absolute; /* Absolute positioning to place buttons at the top right */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+}
